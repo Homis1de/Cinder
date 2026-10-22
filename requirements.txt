@@ -1,0 +1,14 @@
+PySide6>=6.7
+comtypes>=1.4
+pycaw>=20240316
+winrt-runtime>=2.0
+winrt-Windows.Foundation>=2.0
+winrt-Windows.Foundation.Collections>=2.0
+winrt-Windows.Media>=2.0
+winrt-Windows.Media.Core>=2.0
+winrt-Windows.Media.Playback>=2.0
+winrt-Windows.Media.Control>=3.0
+screen-brightness-control>=0.24.2
+numpy>=1.26.4
+sounddevice>=0.5.1
+faster-whisper>=1.1.1

@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+.venv/
+venv/
+env/
+
+# Per-user Cinder configuration and runtime state
+config.json
+*.log
+logs/
+crash_dumps/
+models/
+
+# Build / packaging output
+build/
+dist/
+release/
+*.spec
+*.egg-info/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Test and lint output
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.tmp
