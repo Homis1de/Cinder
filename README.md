@@ -1,33 +1,57 @@
-# Cinder
+<div align="center">
+  <img src="assets/cinder.png" alt="Cinder app icon" width="112" />
+  <h1>Cinder</h1>
+  <p><strong>Your Smart Dial. Your controls. Your workflow.</strong></p>
+  <p>A Windows companion for the CMF Buds Pro 2 Smart Dial, with a radial control wheel, app shortcuts and local speech dictation.</p>
+  <p>
+    <a href="https://github.com/Homis1de/Cinder/releases"><img alt="GitHub Releases" src="https://img.shields.io/github/v/release/Homis1de/Cinder?display_name=tag&style=flat-square&color=ba3448"></a>
+    <a href="https://github.com/Homis1de/Cinder/blob/main/LICENSE"><img alt="MIT License" src="https://img.shields.io/github/license/Homis1de/Cinder?style=flat-square"></a>
+    <a href="https://github.com/Homis1de/Cinder/issues"><img alt="Issues" src="https://img.shields.io/github/issues/Homis1de/Cinder?style=flat-square"></a>
+    <img alt="Windows" src="https://img.shields.io/badge/platform-Windows%2010%20%2F%2011-20232a?style=flat-square&logo=windows">
+  </p>
+  <p><a href="https://github.com/Homis1de/Cinder/releases/latest"><strong>Download Cinder</strong></a> · <a href="https://github.com/Homis1de/Cinder/issues">Report a bug</a> · <a href="https://github.com/Homis1de/Cinder/releases">Release notes</a></p>
+</div>
 
-Cinder v0.14.0 adds a launcher-style control center and a standard Windows installer build recipe. The launcher and the wheel's Settings tile open the same configuration window.
+---
 
-Cinder is a Windows companion for the Nothing/CMF Buds Pro 2 Smart Dial. It adds a circular launcher, dial-controlled modes, custom shortcuts, brightness controls and local speech-to-text.
+## What is Cinder?
+
+Cinder turns your supported Smart Dial into a handy control surface for Windows. Open the circular wheel, choose a mode, and use the dial for common actions without reaching for your keyboard every time.
+
+The launcher and the wheel share one Settings window, so your controls and shortcuts are managed in one place.
 
 ## Features
 
-- Open a wheel with the dial, rotate to choose a tile and tap to select it.
-- Use modes for volume, undo/redo, browser tabs, window switching, zoom, scrolling, page navigation, brightness and slides.
-- Add tiles for applications, websites and keyboard shortcuts.
-- Dictate text with faster-whisper. Recognition runs locally after the model has been downloaded.
-- Configure the microphone, language and model size in Settings.
-- Open the launcher from the desktop or Start Menu; use **Open wheel** when you need the radial control.
-- Add app shortcuts using the executable's own Windows icon.
-- Choose whether Cinder starts at sign-in, stays in the tray when the launcher closes, or uses reduced animations.
+| | Feature | What it does |
+|---|---|---|
+| ◉ | **Radial control wheel** | Choose a mode from a circular menu and control it with the dial. |
+| ↕ | **Everyday controls** | Change volume or brightness, scroll pages, navigate browser tabs and windows, zoom, and use supported presentation controls. |
+| ⌘ | **Custom shortcuts** | Add shortcuts for applications, websites and keyboard actions. |
+| ◈ | **App icons** | Custom executable shortcuts use the application's Windows icon when one is available. |
+| ▤ | **Launcher** | Open the launcher from a desktop or Start Menu shortcut and access the same Settings used by the wheel. |
+| ☾ | **Tray and startup options** | Choose whether Cinder starts at sign-in, stays in the system tray when the launcher closes, and uses reduced animations. |
+| 🎙 | **Local dictation** | Convert speech to text with `faster-whisper`, using a model downloaded to your PC. Review the transcription before inserting it. |
 
-## Requirements
+> Cinder is actively developed. Device behaviour can vary with Windows version, Bluetooth audio profiles and the specific headset firmware. See [Issues](https://github.com/Homis1de/Cinder/issues) for known problems or to report a new one.
 
-- Windows 10 or 11, 64-bit
-- Python 3.12, 64-bit recommended
-- A microphone available to Windows for dictation
-- Internet connection for the first download of a speech model
+## Get Cinder
 
-## Run from source
+### Windows installer
 
-1. Download and extract the project.
-2. Install Python 3.12 if needed.
-3. Open the project folder in PowerShell or VS Code's terminal.
-4. Create an environment and install dependencies:
+1. Open **[GitHub Releases](https://github.com/Homis1de/Cinder/releases)**.
+2. Download the latest `Cinder-Setup-...-x64.exe` installer.
+3. Run it and choose an installation folder. You can opt to create a desktop shortcut.
+4. Launch Cinder from the desktop or Start Menu shortcut.
+
+The installer is published through GitHub Releases when a release build is available. If no installer is listed yet, use the source setup below or check back after the first release is published.
+
+### Run from source
+
+**Requirements:** Windows 10 or 11 (64-bit) and Python 3.12 (64-bit recommended). A microphone and an internet connection are needed for the first speech-model download if you use dictation.
+
+1. Install [Python 3.12](https://www.python.org/downloads/) if needed.
+2. Download and extract this repository.
+3. Open a terminal in the project directory and run:
 
    ```powershell
    py -3.12 -m venv .venv
@@ -35,54 +59,80 @@ Cinder is a Windows companion for the Nothing/CMF Buds Pro 2 Smart Dial. It adds
    .\.venv\Scripts\python.exe cinder.py
    ```
 
-If `py` is unavailable, use `python -m venv .venv` for the first command. If package installation times out, retry it or use a package mirror you trust.
+If the `py` launcher isn't available, use `python` in the first command. If dependency installation times out, retry it or use a package mirror you trust.
 
-## Dictation
+## Dictation and privacy
 
-Open **Settings → Dictation** and select the microphone you use. Bluetooth headsets can show multiple input endpoints, so test each available CMF option. **Base** is the faster model on a CPU; **Small** may improve recognition accuracy but takes more time and disk space. Choose the spoken language for short recordings when possible.
+Cinder uses `faster-whisper` for speech recognition. The selected model must be downloaded the first time; subsequent runs can use the local model cache. The first run can therefore take longer than later ones.
 
-To dictate, focus a text field, open the wheel and choose **Dictation**. Speak, select **Stop & transcribe**, review the result, then choose **Insert text**. Cinder does not insert the text until you confirm it.
+- Choose and test the input device under **Settings → Dictation**. Bluetooth headsets can expose more than one microphone endpoint.
+- **Base** is a reasonable starting point for faster CPU transcription; **Small** can improve recognition in some cases but needs more time and storage.
+- Dictation is processed locally after the model is downloaded. Cinder does not send recorded audio to a cloud transcription service. Internet access is needed to fetch a model that is not already cached.
+- Review the result before inserting it into the focused application.
 
-The first transcription downloads the selected model into the local Windows user cache. The audio is processed on the PC and is not sent to a cloud transcription service. Model downloads require internet access.
+Cinder stores local settings in `config.json` when run from source. The installed version stores its settings in `%LOCALAPPDATA%\Cinder\config.json`. Back up your configuration before replacing or removing a source folder. The installer leaves user settings and the speech-model cache intact when the application is uninstalled.
 
-## Build the Windows installer
+## Building the Windows application
 
-See [BUILD_WINDOWS.md](BUILD_WINDOWS.md) for the full packaging walkthrough. The repository includes `scripts/build_windows.ps1` and `installer/Cinder.iss`. On a Windows x64 PC, create `.venv` and install `requirements.txt`. Test a console build first:
+To build the packaged application and installer yourself, see **[BUILD_WINDOWS.md](BUILD_WINDOWS.md)**. The project includes a PowerShell build script and an Inno Setup installer definition.
 
 ```powershell
+# Diagnostic build (keeps a console visible for troubleshooting)
 .\scripts\build_windows.ps1 -Diagnostic
-```
 
-Quit any existing Cinder instance first, then launch `dist\Cinder-Diagnostic\Cinder-Diagnostic.exe --launcher` and test the dial and dictation. Then install [Inno Setup 6](https://jrsoftware.org/isinfo.php), update the GitHub repository URL and publisher in `installer/Cinder.iss`, and build the release package:
-
-```powershell
+# Release build (requires Inno Setup 6 to compile the installer)
 .\scripts\build_windows.ps1
 ```
 
-The installer offers an installation directory, Start Menu shortcut, optional desktop shortcut and an option to launch Cinder after setup. Test the installer on a clean Windows account before publishing it. The app folder in `dist\Cinder` is the PyInstaller build output; the setup EXE is produced in `release`.
+Test the diagnostic build first, then install and test the generated setup program before sharing it. See [installer/README.md](installer/README.md) for installer-specific notes.
 
-## Configuration
+## Project structure
 
-When run from source, Cinder creates `config.json` beside the source files on first launch. An installed build stores its configuration under `%LOCALAPPDATA%\Cinder\config.json` so settings are writable without administrator rights. It stores the app name, wheel options and custom tiles. Back it up before replacing the project folder. The file is excluded from Git because it can contain personal app paths and shortcuts.
+| File | Purpose |
+|---|---|
+| `cinder.py` | Application startup, dial events, actions and tray integration |
+| `cinder_wheel.py` | Circular wheel interface |
+| `cinder_settings.py` | Launcher-style Settings and custom controls |
+| `cinder_dictation.py` | Microphone capture and local transcription |
+| `cinder_osd.py` | On-screen brightness display |
+| `cinder_brand.py` | Version and application icon loading |
+| `assets/` | Cinder icon files |
+| `scripts/build_windows.ps1` | Windows packaging script |
+| `installer/Cinder.iss` | Inno Setup installer configuration |
 
 ## Troubleshooting
 
-- **No speech is recognized:** open Settings → Dictation and test the selected microphone. Check Windows microphone permissions for desktop apps.
-- **The input level is almost zero:** test another microphone endpoint, including the headset's hands-free endpoint or the laptop microphone.
-- **The first transcription is slow:** Cinder may still be downloading or loading the model. Base is the faster starting point.
-- **The model download fails:** check internet access to Hugging Face and retry. A symlink warning from the model cache is not itself a failure.
-- **Text goes into the wrong app:** focus the intended text field before starting dictation and review the result before inserting it.
+<details>
+  <summary><strong>Dictation is slow or returns no text</strong></summary>
 
-## Project layout
+  Open **Settings → Dictation**, test the selected microphone, and check Windows microphone permissions for desktop apps. Try another headset input endpoint if the input level is very low. The first transcription may take longer while the speech model downloads or loads.
+</details>
 
-- `cinder.py` — app startup, dial events, actions, configuration and tray menu
-- `cinder_wheel.py` — circular wheel UI
-- `cinder_settings.py` — settings, microphone test and custom tiles
-- `cinder_dictation.py` — audio capture and local transcription
-- `cinder_osd.py` — brightness overlay
-- `cinder_brand.py` — app version and icon loading
-- `assets/` — Cinder icon files (PNG, ICO and editable SVG)
+<details>
+  <summary><strong>The model download fails</strong></summary>
 
-## License
+  Check your internet connection and try again. A Hugging Face cache symlink warning is not, by itself, a transcription failure; it can mean the cache uses more disk space.
+</details>
 
-Released under the MIT License. Cinder is an independent project and is not an official Nothing or CMF application.
+<details>
+  <summary><strong>The dial or a control does not behave as expected</strong></summary>
+
+  Confirm that the headset is connected and recognised by Windows. Behaviour can vary by audio profile and device. If the problem continues, [open an issue](https://github.com/Homis1de/Cinder/issues) with your Windows version, headset connection type, steps to reproduce and any relevant error output. Remove personal information from logs before posting them.
+</details>
+
+## Contributing and bug reports
+
+Bug reports, thoughtful suggestions and pull requests are welcome. Before opening an issue, search existing issues and include:
+
+- Windows version and whether you're running from source or the installer
+- Steps to reproduce the problem
+- What you expected and what actually happened
+- Relevant error messages (with personal information removed)
+
+Please avoid uploading configuration files, recordings, access tokens or other private data to an issue.
+
+## License and attribution
+
+Cinder is released under the [MIT License](LICENSE).
+
+Cinder is an independent community project and is **not affiliated with, endorsed by, or an official product of Nothing or CMF**. Product and brand names are used only to identify the compatible hardware.
